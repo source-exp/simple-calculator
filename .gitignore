@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+
+# Tool and OS artifacts
+.coverage
+.pytest_cache/
+.mypy_cache/
+.DS_Store

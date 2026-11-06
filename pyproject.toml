@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "simple-calculator"
+version = "0.1.0"
+description = "A simple command-line calculator"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+simple-calculator = "calculator:main"
+
+[tool.setuptools]
+py-modules = ["calculator"]
+
+[dependency-groups]
+dev = ["pylint>=3.3"]
