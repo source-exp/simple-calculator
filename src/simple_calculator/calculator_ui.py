@@ -1,8 +1,8 @@
 """Tkinter graphical interface for the simple calculator."""
 
-import tkinter as tk
+import tkinter as tk  # pylint: disable=import-error
 from collections.abc import Sequence
-from tkinter import ttk
+from tkinter import ttk  # pylint: disable=import-error
 
 from simple_calculator._cli import build_parser
 from simple_calculator.calculator import evaluate_expression
