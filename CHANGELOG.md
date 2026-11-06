@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `--version` flag for CLI and UI entry points.
 - `py.typed` marker for type hints.
 
+### Fixed
+- Tests no longer require Tkinter, so they pass on headless CI runners.
+
 ## [0.1.0] - 2026-11-06
 
 ### Added

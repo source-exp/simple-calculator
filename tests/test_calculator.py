@@ -6,8 +6,7 @@ from contextlib import redirect_stdout
 from unittest.mock import patch
 
 from simple_calculator import __version__
-from simple_calculator.calculator import calculate, main
-from simple_calculator.calculator_ui import evaluate_expression
+from simple_calculator.calculator import calculate, evaluate_expression, main
 
 
 class CalculateTests(unittest.TestCase):

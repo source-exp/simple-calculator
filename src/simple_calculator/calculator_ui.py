@@ -1,28 +1,11 @@
 """Tkinter graphical interface for the simple calculator."""
 
-import re
 import tkinter as tk
 from collections.abc import Sequence
 from tkinter import ttk
 
 from simple_calculator._cli import build_parser
-from simple_calculator.calculator import calculate
-
-
-EXPRESSION_PATTERN = re.compile(
-    r"\s*([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)"
-    r"\s*([+\-*/])\s*"
-    r"([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)\s*"
-)
-
-
-def evaluate_expression(expression: str) -> float:
-    """Evaluate a two-number arithmetic expression from the display."""
-    match = EXPRESSION_PATTERN.fullmatch(expression)
-    if match is None:
-        raise ValueError("Enter a valid expression, such as 12 + 3")
-    first, operator, second = match.groups()
-    return calculate(float(first), operator, float(second))
+from simple_calculator.calculator import evaluate_expression
 
 
 class CalculatorWindow:  # pylint: disable=too-few-public-methods

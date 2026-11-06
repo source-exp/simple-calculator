@@ -1,8 +1,16 @@
 """A simple command-line calculator."""
 
+import re
 from collections.abc import Sequence
 
 from simple_calculator._cli import build_parser
+
+
+EXPRESSION_PATTERN = re.compile(
+    r"\s*([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)"
+    r"\s*([+\-*/])\s*"
+    r"([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)\s*"
+)
 
 
 def calculate(first: float, operator: str, second: float) -> float:
@@ -18,6 +26,15 @@ def calculate(first: float, operator: str, second: float) -> float:
             raise ZeroDivisionError("Cannot divide by zero.")
         return first / second
     raise ValueError("Unknown operator. Use +, -, *, or /.")
+
+
+def evaluate_expression(expression: str) -> float:
+    """Evaluate a two-number arithmetic expression such as '12 / 3'."""
+    match = EXPRESSION_PATTERN.fullmatch(expression)
+    if match is None:
+        raise ValueError("Enter a valid expression, such as 12 + 3")
+    first, operator, second = match.groups()
+    return calculate(float(first), operator, float(second))
 
 
 def main(argv: Sequence[str] | None = None) -> None:

@@ -7,7 +7,8 @@ multiplication, and division, with both command-line and desktop interfaces.
 
 - Python 3.10 or newer
 - [uv](https://docs.astral.sh/uv/)
-- Tkinter for the desktop interface (included with most Python installations)
+- Tkinter for the desktop interface (use a Python installation that includes
+  it; uv-managed Python builds may not)
 
 ## Setup
 
