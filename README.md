@@ -1,13 +1,13 @@
 # Simple Calculator
 
-A lightweight command-line calculator written in Python. It supports addition,
-subtraction, multiplication, and division, with both command-line and desktop
-interfaces.
+A lightweight calculator written in Python. It supports addition, subtraction,
+multiplication, and division, with both command-line and desktop interfaces.
 
 ## Requirements
 
 - Python 3.10 or newer
 - [uv](https://docs.astral.sh/uv/)
+- Tkinter for the desktop interface (included with most Python installations)
 
 ## Setup
 
@@ -19,7 +19,7 @@ uv sync
 
 ## Run
 
-Start the calculator with:
+Start the command-line calculator with:
 
 ```sh
 uv run simple-calculator
@@ -35,12 +35,36 @@ uv run simple-calculator-ui
 ```
 
 The desktop interface also accepts keyboard input; press Enter to calculate
-and Escape to clear. It requires a Python installation that includes Tkinter.
+and Escape to clear.
 
-You can also run it without installing the project:
+Both interfaces accept `--version`:
 
 ```sh
-uv run python calculator.py
+uv run simple-calculator --version
+uv run simple-calculator-ui --version
+```
+
+You can also run the command-line interface without installing the project:
+
+```sh
+uv run python -m simple_calculator.calculator
+```
+
+## Project structure
+
+```text
+.
+├── src/simple_calculator/
+│   ├── __init__.py
+│   ├── _cli.py          # Shared argument parsing
+│   ├── calculator.py    # Arithmetic logic and CLI
+│   ├── calculator_ui.py # Tkinter desktop interface
+│   ├── version.py       # Package version
+│   └── py.typed         # Marks the package as typed
+├── tests/
+│   └── test_calculator.py
+├── pyproject.toml
+└── README.md
 ```
 
 ## Tests and linting
@@ -48,11 +72,41 @@ uv run python calculator.py
 Run the unit tests:
 
 ```sh
-uv run python -m unittest -v
+uv run python -m unittest discover -v
 ```
 
-Run Pylint:
+Run Pylint and mypy:
 
 ```sh
-uv run pylint calculator.py test_calculator.py
+uv run pylint src/simple_calculator tests
+uv run mypy
 ```
+
+Build source and wheel distributions with:
+
+```sh
+uv build
+```
+
+## Pre-commit hooks
+
+Install the hooks once to lint and type-check changed files before each commit:
+
+```sh
+uv run pre-commit install
+```
+
+Run all hooks manually with:
+
+```sh
+uv run pre-commit run --all-files
+```
+
+## Continuous integration
+
+The GitHub Actions workflow in `.github/workflows/ci.yml` runs the tests,
+Pylint, mypy, and a package build on every push and pull request.
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for release history.
