@@ -12,9 +12,10 @@ dependencies = []
 
 [project.scripts]
 simple-calculator = "calculator:main"
+simple-calculator-ui = "calculator_ui:main"
 
 [tool.setuptools]
-py-modules = ["calculator"]
+py-modules = ["calculator", "calculator_ui"]
 
 [dependency-groups]
 dev = ["pylint>=3.3"]

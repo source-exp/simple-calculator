@@ -1,7 +1,8 @@
 # Simple Calculator
 
 A lightweight command-line calculator written in Python. It supports addition,
-subtraction, multiplication, and division.
+subtraction, multiplication, and division, with both command-line and desktop
+interfaces.
 
 ## Requirements
 
@@ -26,6 +27,15 @@ uv run simple-calculator
 
 Enter an expression with spaces around the operator, such as `12 / 3`. Enter
 `q`, `quit`, or `exit` to close the calculator.
+
+To launch the desktop calculator, run:
+
+```sh
+uv run simple-calculator-ui
+```
+
+The desktop interface also accepts keyboard input; press Enter to calculate
+and Escape to clear. It requires a Python installation that includes Tkinter.
 
 You can also run it without installing the project:
 

@@ -4,6 +4,7 @@ import unittest
 from unittest.mock import patch
 
 from calculator import calculate, main
+from calculator_ui import evaluate_expression
 
 
 class CalculateTests(unittest.TestCase):
@@ -34,6 +35,28 @@ class CalculateTests(unittest.TestCase):
         """Reject unsupported arithmetic operators."""
         with self.assertRaisesRegex(ValueError, "Unknown operator"):
             calculate(1, "%", 2)
+
+
+class ExpressionTests(unittest.TestCase):
+    """Tests for expressions entered in the graphical calculator."""
+
+    def test_evaluates_expression_without_spaces(self):
+        """Accept an expression without whitespace around its operator."""
+        self.assertEqual(evaluate_expression("12/3"), 4)
+
+    def test_evaluates_negative_number(self):
+        """Handle a signed second operand."""
+        self.assertEqual(evaluate_expression("2 * -3"), -6)
+
+    def test_rejects_malformed_expression(self):
+        """Reject expressions containing more than one operation."""
+        with self.assertRaisesRegex(ValueError, "valid expression"):
+            evaluate_expression("2 + 3 + 4")
+
+    def test_division_by_zero(self):
+        """Propagate division-by-zero errors from the shared calculator."""
+        with self.assertRaisesRegex(ZeroDivisionError, "Cannot divide by zero"):
+            evaluate_expression("1 / 0")
 
 
 class MainTests(unittest.TestCase):
